@@ -51,8 +51,9 @@ class VirtualROCv3:
         if address == 2:
             if from_hardware:
                 register_table = pd.read_csv(self.path_to_registers_state)
-                r2 = int(register_table.loc[(register_table.R0 == self._cache[0]) &
-                                            (register_table.R1 == self._cache[1]), 'R2'])
+                r2 = register_table.loc[(register_table.R0 == self._cache[0]) &
+                                            (register_table.R1 == self._cache[1]), 'R2']
+                r2 = r2.iloc[0]
                 print(f"Read the value {r2} from address {self._cache[0], self._cache[1]}")
                 return r2
             else:
